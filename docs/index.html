@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psyduck | Gestión de Releases - Quantum Metric</title>
+  <style>
+    :root {
+      --yellow: #facc15;
+      --dark: #1e293b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --accent: #0284c7;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--dark);
+      margin: 0;
+      padding: 2rem 1rem;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 5px solid var(--yellow);
+      margin-bottom: 1.5rem;
+    }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    .badge-psyduck {
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      margin-bottom: 1.25rem;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.15rem;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 0.5rem;
+    }
+    .checklist label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.45rem 0;
+      cursor: pointer;
+    }
+    .checklist input:checked + span {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th { background-color: var(--bg); }
+    .status-ok {
+      background: #dcfce7;
+      color: #166534;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .links a {
+      display: inline-block;
+      margin-right: 0.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
 
+  <div class="container">
+    <!-- CABECERA: EDITAR EL NOMBRE DE QUIEN LLEVA EL ROL -->
+    <header>
+      <div>
+        <h1>🦆 Portal Psyduck — Quantum Metric</h1>
+        <small>Centro de control y seguimiento de Releases del equipo</small>
+      </div>
+      <div class="badge-psyduck">
+        Psyduck actual: [Tu Nombre Aquí]
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- PRÓXIMA RELEASE -->
+      <div class="card">
+        <h2>🚀 Próxima Release</h2>
+        <p><strong>Versión:</strong> v1.4.0</p>
+        <p><strong>Fecha prevista:</strong> Viernes, 23 Oct</p>
+        <p><strong>Estado:</strong> En validación pre-producción</p>
+      </div>
+
+      <!-- ENLACES RÁPIDOS -->
+      <div class="card">
+        <h2>🔗 Accesos Rápidos</h2>
+        <div class="links">
+          <a href="#" target="_blank">📊 Consola Quantum Metric</a><br>
+          <a href="#" target="_blank">💻 Repositorio en GitHub</a><br>
+          <a href="#" target="_blank">📋 Tablero de Tareas / Jira</a><br>
+          <a href="#" target="_blank">📖 Runbook de Despliegue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST OPERATIVO DEL ROL PSYDUCK -->
+    <div class="card">
+      <h2>✅ Checklist de Release para el Psyduck de turno</h2>
+      <div class="checklist">
+        <label><input type="checkbox"> <span>Revisar Pull Requests pendientes del repositorio de Quantum Metric.</span></label>
+        <label><input type="checkbox"> <span>Validar configuración de eventos, sesiones y alertas en entorno de pruebas.</span></label>
+        <label><input type="checkbox"> <span>Ejecutar la release y etiquetar la versión en GitHub Enterprise.</span></label>
+        <label><input type="checkbox"> <span>Monitorizar métricas de errores en Quantum Metric durante los primeros 30 min.</span></label>
+        <label><input type="checkbox"> <span>Actualizar la tabla de historial abajo y comunicar la subida al equipo.</span></label>
+      </div>
+    </div>
+
+    <!-- HISTORIAL DE RELEASES -->
+    <div class="card">
+      <h2>📜 Historial de Releases Recientes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Versión</th>
+            <th>Fecha</th>
+            <th>Psyduck Responsable</th>
+            <th>Cambios Principales</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- COPIAR Y PEGAR UNA FILA <tr>...</tr> PARA CADA NUEVA RELEASE -->
+          <tr>
+            <td><strong>v1.3.2</strong></td>
+            <td>15 Oct 2026</td>
+            <td>[Nombre]</td>
+            <td>Ajuste de selectores y captura de errores en checkout</td>
+            <td><span class="status-ok">Completada</span></td>
+          </tr>
+          <tr>
+            <td><strong>v1.3.1</strong></td>
+            <td>01 Oct 2026</td>
+            <td>[Nombre]</td>
+            <td>Actualización del script base de Quantum Metric</td>
+            <td><span class="status-ok">Completada</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>
