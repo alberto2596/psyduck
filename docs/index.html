@@ -20,122 +20,115 @@
       background-color: var(--bg);
       color: var(--dark);
       margin: 0;
-      padding: 2rem 1rem;
+      padding: 1rem;
+      font-size: 0.92rem;
     }
-    .container { max-width: 1000px; margin: 0 auto; }
+    .container { max-width: 1150px; margin: 0 auto; }
 
-    header {
+    /* Barra superior compacta todo-en-uno */
+    .topbar {
       background: var(--dark);
       color: white;
-      padding: 1.5rem 2rem;
-      border-radius: 14px;
+      padding: 0.65rem 1.25rem;
+      border-radius: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
-      border-bottom: 5px solid var(--yellow);
-      margin-bottom: 2rem;
-    }
-    header h1 { margin: 0; font-size: 1.5rem; }
-    .btn-sheet {
-      background: #107c41;
-      color: white;
-      text-decoration: none;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* Banner del turno actual */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-    .hero-card {
-      background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      padding: 1.4rem;
-    }
-    .hero-card.active {
-      background: var(--yellow-soft);
-      border-color: var(--yellow);
-      box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
-    }
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      background: var(--dark);
-      color: var(--yellow);
+      gap: 0.75rem;
+      border-bottom: 3px solid var(--yellow);
       margin-bottom: 0.5rem;
     }
-    .badge.secondary {
-      background: var(--border);
-      color: var(--dark);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
-    .big-name {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 0.25rem 0;
-    }
-    .period-text {
-      font-size: 0.9rem;
-      color: var(--muted);
+    .brand h1 {
       margin: 0;
-    }
-
-    /* Tarjetas del equipo */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
-    .member-pill {
-      background: var(--card);
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
+      font-size: 1.05rem;
       font-weight: 700;
     }
-    .member-pill.on-duty {
-      border-color: var(--yellow);
-      background: var(--yellow-soft);
+    .duty-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+    }
+    .pill-active {
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .pill-next {
+      background: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
     }
 
-    /* Línea temporal horizontal como el Excel */
-    .timeline-wrapper {
+    /* Desplegable discreto para el calendario y censo */
+    details.roster-drawer {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
+      border-radius: 8px;
+      padding: 0.4rem 0.85rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.8rem;
+    }
+    details.roster-drawer summary {
+      cursor: pointer;
+      color: var(--muted);
+      font-weight: 600;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    details.roster-drawer summary:hover { color: var(--dark); }
+    .drawer-content {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
       overflow-x: auto;
     }
+    .team-inline {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .mini-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .mini-tag.on-duty {
+      background: var(--yellow-soft);
+      border-color: #eab308;
+    }
+
+    /* Tabla compacta dentro del desplegable */
     table.excel-mirror {
       border-collapse: collapse;
       width: 100%;
-      min-width: 650px;
-      font-size: 0.88rem;
+      font-size: 0.76rem;
     }
     .excel-mirror th {
       background: var(--purple-sheet);
       color: var(--dark);
-      padding: 0.65rem 0.85rem;
+      padding: 0.35rem 0.6rem;
       border: 1px solid #cbd5e1;
-      text-align: center;
       white-space: nowrap;
     }
     .excel-mirror td {
-      padding: 0.75rem 0.85rem;
+      padding: 0.4rem 0.6rem;
       border: 1px solid #cbd5e1;
       text-align: center;
       font-weight: 600;
@@ -145,105 +138,114 @@
       background: var(--yellow-soft) !important;
       border: 2px solid #eab308;
     }
+
+    /* Zona principal para el contenido importante */
+    .main-workspace {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      min-height: 420px;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
-      <div>
-        <h1>🦆 Portal Psyduck — Quantum Metric</h1>
-        <small id="status-sync">Conectando con Google Sheets...</small>
+    <!-- 1. BARRA SUPERIOR ULTRA-COMPACTA -->
+    <header class="topbar">
+      <div class="brand">
+        <span>🦆</span>
+        <h1>Portal Psyduck — Quantum Metric</h1>
       </div>
-      <a href="PEGA_AQUI_EL_LINK_DE_TU_GOOGLE_SHEETS" target="_blank" class="btn-sheet">
-        📊 Abrir Google Sheets
-      </a>
+
+      <div class="duty-bar">
+        <span class="pill-active">
+          En turno: <span id="current-psyduck">Cargando...</span>
+          <small id="current-period" style="font-weight:400; opacity:0.85;"></small>
+        </span>
+        <span class="pill-next">
+          Siguiente: <strong id="next-psyduck">-</strong>
+        </span>
+      </div>
     </header>
 
-    <!-- 1. Resumen de quién está de guardia hoy y quién va después -->
-    <div class="hero-grid">
-      <div class="hero-card active">
-        <span class="badge">🦆 Psyduck Esta Semana</span>
-        <p class="big-name" id="current-psyduck">Cargando...</p>
-        <p class="period-text" id="current-period">Buscando fecha actual en el Excel...</p>
+    <!-- 2. DESPLEGABLE OCULTO (Solo se abre si alguien quiere consultar el Excel completo) -->
+    <details class="roster-drawer" id="drawer">
+      <summary>
+        <span>📅 Ver cuadrante completo de semanas y equipo (<span id="status-sync">sincronizando...</span>)</span>
+        <a href="PEGA_AQUI_EL_LINK_DE_TU_GOOGLE_SHEETS" target="_blank" style="color:#107c41; text-decoration:none;">Abrir Sheets ↗</a>
+      </summary>
+      <div class="drawer-content">
+        <div class="team-inline" id="team-grid"><strong>Equipo:</strong></div>
+        <table class="excel-mirror">
+          <thead><tr id="row-dates"><th>Semana</th></tr></thead>
+          <tbody><tr id="row-names"><td style="background:#d9d2e9;">Psyduck</td></tr></tbody>
+        </table>
       </div>
-      <div class="hero-card">
-        <span class="badge secondary">⏭️ Siguiente Turno (Backup)</span>
-        <p class="big-name" id="next-psyduck">-</p>
-        <p class="period-text" id="next-period">-</p>
-      </div>
-    </div>
+    </details>
 
-    <!-- 2. Censo de personas del equipo detectadas en el Excel -->
-    <h2>👥 Equipo Psyduck</h2>
-    <div class="team-grid" id="team-grid"></div>
-
-    <!-- 3. Vista de cuadrante de semanas (igual que tu Excel pero resaltando la semana actual) -->
-    <h2>📅 Cuadrante de Semanas (Sincronizado)</h2>
-    <div class="timeline-wrapper">
-      <table class="excel-mirror" id="schedule-table">
-        <thead><tr id="row-dates"><th>Semana</th></tr></thead>
-        <tbody><tr id="row-names"><td style="background:#d9d2e9;">Psyduck</td></tr></tbody>
-      </table>
-    </div>
+    <!-- ==================================================================== -->
+    <!-- 3. CONTENIDO PRINCIPAL DE LA PÁGINA (EL 90% DEL ESPACIO)             -->
+    <!-- ==================================================================== -->
+    <main class="main-workspace">
+      <h2 style="margin-top:0;">🚀 Gestión de Releases — Quantum Metric</h2>
+      <p style="color:var(--muted);">Aquí irá los bloques principales que definamos ahora.</p>
+    </main>
   </div>
 
   <script>
-    // Esta función recibe automáticamente los datos desde tu Google Apps Script
     function cargarDatosPsyduck(datos) {
-      document.getElementById("status-sync").textContent = 
-        "Sincronizado en tiempo real con Google Sheets";
+      document.getElementById("status-sync").textContent = "sincronizado";
 
-      // 1. Pintar Psyduck actual y siguiente
       if (datos.turnoActual) {
         document.getElementById("current-psyduck").textContent = datos.turnoActual.persona;
-        document.getElementById("current-period").textContent = datos.turnoActual.cabecera;
+        const fechas = datos.turnoActual.cabecera.match(/\((.*?)\)/);
+        document.getElementById("current-period").textContent = fechas ? `(${fechas[1]})` : "";
       } else {
-        document.getElementById("current-psyduck").textContent = "Sin turno activo hoy";
-        document.getElementById("current-period").textContent = 
-          "Añade la columna con las fechas de la semana actual en el Google Sheets.";
+        document.getElementById("current-psyduck").textContent = "Sin turno hoy";
       }
 
       if (datos.proximoTurno) {
         document.getElementById("next-psyduck").textContent = datos.proximoTurno.persona;
-        document.getElementById("next-period").textContent = datos.proximoTurno.cabecera;
       }
 
-      // 2. Pintar las tarjetas de los miembros del equipo
       const teamGrid = document.getElementById("team-grid");
       datos.miembros.forEach(nombre => {
         const esActivo = datos.turnoActual && datos.turnoActual.persona === nombre;
-        const div = document.createElement("div");
-        div.className = `member-pill ${esActivo ? "on-duty" : ""}`;
-        div.innerHTML = `${esActivo ? "🦆 " : ""}${nombre}`;
-        teamGrid.appendChild(div);
+        const span = document.createElement("span");
+        span.className = `mini-tag ${esActivo ? "on-duty" : ""}`;
+        span.textContent = `${esActivo ? "🦆 " : ""}${nombre}`;
+        teamGrid.appendChild(span);
       });
 
-      // 3. Pintar la tabla horizontal y hacer scroll automático hasta la semana actual
       const trDates = document.getElementById("row-dates");
       const trNames = document.getElementById("row-names");
+      let thActual = null;
 
-      datos.turnos.forEach((t, idx) => {
+      datos.turnos.forEach(t => {
         const th = document.createElement("th");
         th.textContent = t.cabecera;
-        if (t.esActual) th.className = "col-actual";
+        if (t.esActual) { th.className = "col-actual"; thActual = th; }
         trDates.appendChild(th);
 
         const td = document.createElement("td");
         td.textContent = t.persona;
-        if (t.esActual) {
-          td.className = "col-actual";
-          setTimeout(() => th.scrollIntoView({ behavior: "smooth", inline: "center" }), 200);
-        }
+        if (t.esActual) td.className = "col-actual";
         trNames.appendChild(td);
+      });
+
+      // Hace auto-scroll a la semana actual cuando el usuario abre el desplegable
+      document.getElementById("drawer").addEventListener("toggle", function() {
+        if (this.open && thActual) {
+          setTimeout(() => thActual.scrollIntoView({ behavior: "smooth", inline: "center" }), 100);
+        }
       });
     }
   </script>
 
-  <!-- ==================================================================== -->
-  <!-- PEGA AQUÍ DEBAJO LA URL DE TU APPS SCRIPT (la que termina en /exec)  -->
-  <!-- ==================================================================== -->
-  <script src="https://script.google.com/macros/s/AKfycbxXbNrHBztvNgV3eeyEUmYYZwqSKTwz3-L24NiNDrz5FzXqiaACLUeB5Psvm2xMf5xe/exec"></script>
+  <!-- PEGA AQUÍ DEBAJO LA URL DE TU APPS SCRIPT (terminada en /exec) -->
+  <script src="PEGA_AQUI_TU_URL_DE_APPS_SCRIPT"></script>
 
 </body>
 </html>
