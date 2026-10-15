@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Psyduck | Quantum Metric</title>
+  <title>Portal Psyduck | Quantum Metric Releases</title>
   <style>
     :root {
       --yellow: #facc15;
@@ -21,11 +21,11 @@
       color: var(--dark);
       margin: 0;
       padding: 1rem;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
     }
-    .container { max-width: 1150px; margin: 0 auto; }
+    .container { max-width: 1340px; margin: 0 auto; }
 
-    /* Barra superior compacta todo-en-uno */
+    /* 1. Barra superior compacta */
     .topbar {
       background: var(--dark);
       color: white;
@@ -39,23 +39,9 @@
       border-bottom: 3px solid var(--yellow);
       margin-bottom: 0.5rem;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .brand h1 {
-      margin: 0;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-    .duty-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      font-size: 0.82rem;
-    }
+    .brand { display: flex; align-items: center; gap: 0.6rem; }
+    .brand h1 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .duty-bar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; font-size: 0.82rem; }
     .pill-active {
       background: var(--yellow);
       color: var(--dark);
@@ -70,13 +56,13 @@
       border-radius: 6px;
     }
 
-    /* Desplegable discreto para el calendario y censo */
+    /* 2. Desplegable discreto para el cuadrante de semanas */
     details.roster-drawer {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 0.4rem 0.85rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       font-size: 0.8rem;
     }
     details.roster-drawer summary {
@@ -95,70 +81,143 @@
       border-top: 1px solid var(--border);
       overflow-x: auto;
     }
-    .team-inline {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 0.6rem;
-    }
-    .mini-tag {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      font-weight: 600;
-    }
-    .mini-tag.on-duty {
-      background: var(--yellow-soft);
-      border-color: #eab308;
-    }
+    .team-inline { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.6rem; }
+    .mini-tag { background: var(--bg); border: 1px solid var(--border); padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600; }
+    .mini-tag.on-duty { background: var(--yellow-soft); border-color: #eab308; }
+    table.excel-mirror { border-collapse: collapse; width: 100%; font-size: 0.75rem; }
+    .excel-mirror th { background: var(--purple-sheet); padding: 0.35rem 0.6rem; border: 1px solid #cbd5e1; white-space: nowrap; }
+    .excel-mirror td { padding: 0.4rem 0.6rem; border: 1px solid #cbd5e1; text-align: center; font-weight: 600; white-space: nowrap; }
+    .excel-mirror .col-actual { background: var(--yellow-soft) !important; border: 2px solid #eab308; }
 
-    /* Tabla compacta dentro del desplegable */
-    table.excel-mirror {
-      border-collapse: collapse;
-      width: 100%;
-      font-size: 0.76rem;
-    }
-    .excel-mirror th {
-      background: var(--purple-sheet);
-      color: var(--dark);
-      padding: 0.35rem 0.6rem;
-      border: 1px solid #cbd5e1;
-      white-space: nowrap;
-    }
-    .excel-mirror td {
-      padding: 0.4rem 0.6rem;
-      border: 1px solid #cbd5e1;
-      text-align: center;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .excel-mirror .col-actual {
-      background: var(--yellow-soft) !important;
-      border: 2px solid #eab308;
-    }
-
-    /* Zona principal para el contenido importante */
+    /* 3. Zona principal: Cambios de Release */
     .main-workspace {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.5rem;
-      min-height: 420px;
+      padding: 1.25rem;
     }
+    .workspace-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .workspace-header h2 { margin: 0; font-size: 1.15rem; }
+    .stats-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .stat-badge {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* Barra de filtros */
+    .filters-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 0.65rem;
+      background: var(--bg);
+      padding: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .filter-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .filter-group select, .filter-group input {
+      width: 100%;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      background: white;
+      box-sizing: border-box;
+    }
+
+    /* Tabla de cambios */
+    .table-container { overflow-x: auto; }
+    table.releases-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.81rem;
+    }
+    .releases-table th {
+      background: #f1f5f9;
+      color: #334155;
+      text-align: left;
+      padding: 0.55rem 0.65rem;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    .releases-table td {
+      padding: 0.5rem 0.65rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .releases-table tr:hover { background-color: #f8fafc; }
+
+    /* Etiquetas de colores fieles al Google Sheets */
+    .chip {
+      display: inline-block;
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.73rem;
+      white-space: nowrap;
+    }
+    .pais-es { background: #dcfce7; color: #166534; }
+    .pais-it { background: #fee2e2; color: #991b1b; }
+    .pais-de { background: #ede9fe; color: #5b21b6; }
+    .pais-default { background: #e2e8f0; color: #334155; }
+
+    .plat-quantum { background: #fee2e2; color: #b91c1c; }
+    .plat-tealium { background: #dbeafe; color: #1d4ed8; }
+    .plat-ambos { background: #fef3c7; color: #92400e; }
+
+    .cambio-core { background: #f3e8ff; color: #6b21a8; }
+    .cambio-ofus { background: #fee2e2; color: #991b1b; }
+    .cambio-conf { background: #fef3c7; color: #92400e; }
+    .cambio-default { background: #f1f5f9; color: #334155; }
+
+    .estado-todo { background: #fecaca; color: #991b1b; }
+    .estado-ok { background: #bbf7d0; color: #166534; }
+
+    .perfil-chip { background: #f3e8ff; color: #581c87; font-family: monospace; font-size: 0.72rem; }
+    .url-code { font-family: monospace; font-size: 0.75rem; color: #334155; max-width: 260px; word-break: break-all; }
+    .btn-jira {
+      display: inline-block;
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.74rem;
+      white-space: nowrap;
+    }
+    .btn-jira:hover { background: #dbeafe; }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- 1. BARRA SUPERIOR ULTRA-COMPACTA -->
+    <!-- 1. BARRA SUPERIOR COMPACTA -->
     <header class="topbar">
       <div class="brand">
         <span>🦆</span>
         <h1>Portal Psyduck — Quantum Metric</h1>
       </div>
-
       <div class="duty-bar">
         <span class="pill-active">
           En turno: <span id="current-psyduck">Cargando...</span>
@@ -170,11 +229,11 @@
       </div>
     </header>
 
-    <!-- 2. DESPLEGABLE OCULTO (Solo se abre si alguien quiere consultar el Excel completo) -->
+    <!-- 2. DESPLEGABLE OCULTO DEL CUADRANTE DE SEMANAS -->
     <details class="roster-drawer" id="drawer">
       <summary>
         <span>📅 Ver cuadrante completo de semanas y equipo (<span id="status-sync">sincronizando...</span>)</span>
-        <a href="https://docs.google.com/spreadsheets/d/1FdQphS9U1p9VbDQRXsBssSVe8D5eH9d-01R6CE065kk/edit?gid=0#gid=0" target="_blank" style="color:#107c41; text-decoration:none;">Abrir Sheets ↗</a>
+        <a href="https://docs.google.com/spreadsheets/d/1FdQphS9U1p9VbDQRXsBssSVe8D5eH9d-01R6CE065kk/edit?gid=0#gid=0" target="_blank" style="color:#107c41; text-decoration:none;">Abrir Google Sheets ↗</a>
       </summary>
       <div class="drawer-content">
         <div class="team-inline" id="team-grid"><strong>Equipo:</strong></div>
@@ -185,16 +244,93 @@
       </div>
     </details>
 
-    <!-- ==================================================================== -->
-    <!-- 3. CONTENIDO PRINCIPAL DE LA PÁGINA (EL 90% DEL ESPACIO)             -->
-    <!-- ==================================================================== -->
+    <!-- 3. PANEL PRINCIPAL: LISTADO DE CAMBIOS PARA LA PRÓXIMA RELEASE -->
     <main class="main-workspace">
-      <h2 style="margin-top:0;">🚀 Gestión de Releases — Quantum Metric</h2>
-      <p style="color:var(--muted);">Aquí irá los bloques principales que definamos ahora.</p>
+      <div class="workspace-header">
+        <div>
+          <h2>🚀 Cambios para la Release</h2>
+          <small style="color:var(--muted);" id="release-subtitle">Sincronizando cambios desde Google Sheets...</small>
+        </div>
+        <div class="stats-row">
+          <span class="stat-badge" id="stat-total">Total: 0</span>
+          <span class="stat-badge" style="background:#fee2e2; color:#991b1b; border-color:#fecaca;" id="stat-todo">ToDo: 0</span>
+          <span class="stat-badge" style="background:#dcfce7; color:#166534; border-color:#bbf7d0;" id="stat-done">Implementados: 0</span>
+        </div>
+      </div>
+
+      <!-- BARRA DE FILTROS -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>📅 Fecha Release</label>
+          <select id="filter-fecha"></select>
+        </div>
+        <div class="filter-group">
+          <label>⚙️ Plataforma</label>
+          <select id="filter-plataforma">
+            <option value="ALL">Todas (Quantum + Tealium)</option>
+            <option value="QUANTUM_ANY">Con Quantum (Quantum + Ambos)</option>
+            <option value="Quantum">Exclusivo Quantum</option>
+            <option value="Tealium y Quantum">Tealium y Quantum</option>
+            <option value="Tealium">Exclusivo Tealium</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>🌍 País</label>
+          <select id="filter-pais">
+            <option value="ALL">Todos los países</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>👤 Owner DigitalTools</label>
+          <select id="filter-owner">
+            <option value="ALL">Todos los Owners</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>📌 Estado</label>
+          <select id="filter-estado">
+            <option value="ALL">Todos los estados</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>🔍 Buscar cambio / URL</label>
+          <input type="text" id="filter-search" placeholder="Ej: Ofuscación, NPS, Core...">
+        </div>
+      </div>
+
+      <!-- TABLA DE RESULTADOS -->
+      <div class="table-container">
+        <table class="releases-table">
+          <thead>
+            <tr>
+              <th>País</th>
+              <th>Perfil</th>
+              <th>Qué se cambia</th>
+              <th>Plataforma</th>
+              <th>Operativa / Cambio</th>
+              <th>URLs</th>
+              <th>Owner</th>
+              <th>Fecha Release</th>
+              <th>Estado</th>
+              <th>Jira</th>
+            </tr>
+          </thead>
+          <tbody id="releases-tbody">
+            <tr>
+              <td colspan="10" style="text-align:center; padding:2rem; color:var(--muted);">
+                Cargando cambios de la release desde Google Sheets...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
   </div>
 
   <script>
+    // =========================================================================
+    // PARTE 1: PINTAR EL TURNO DE PSYDUCK (CABECERA Y DESPLEGABLE)
+    // =========================================================================
     function cargarDatosPsyduck(datos) {
       document.getElementById("status-sync").textContent = "sincronizado";
 
@@ -235,16 +371,182 @@
         trNames.appendChild(td);
       });
 
-      // Hace auto-scroll a la semana actual cuando el usuario abre el desplegable
       document.getElementById("drawer").addEventListener("toggle", function() {
         if (this.open && thActual) {
           setTimeout(() => thActual.scrollIntoView({ behavior: "smooth", inline: "center" }), 100);
         }
       });
     }
+
+    // =========================================================================
+    // PARTE 2: PINTAR Y FILTRAR LOS CAMBIOS DE LA PRÓXIMA RELEASE
+    // =========================================================================
+    let todosLosCambios = [];
+
+    function parseFechaDMY(str) {
+      const m = (str || "").match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (!m) return null;
+      return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+    }
+
+    function cargarReleases(datos) {
+      todosLosCambios = datos || [];
+
+      const fechasMap = new Map();
+      const paisesSet = new Set();
+      const ownersSet = new Set();
+      const estadosSet = new Set();
+
+      todosLosCambios.forEach(item => {
+        if (item.fechaRelease) fechasMap.set(item.fechaRelease, parseFechaDMY(item.fechaRelease));
+        if (item.pais) paisesSet.add(item.pais);
+        if (item.owner) ownersSet.add(item.owner);
+        if (item.estado) estadosSet.add(item.estado);
+      });
+
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0);
+
+      // Ordenar fechas de más reciente a más antigua
+      const fechasOrdenadas = Array.from(fechasMap.keys()).sort((a, b) => {
+        const da = fechasMap.get(a) || new Date(0);
+        const db = fechasMap.get(b) || new Date(0);
+        return db - da;
+      });
+
+      // Detectar automáticamente la próxima Fecha Release (>= hoy más cercana)
+      let proximaFecha = "ALL";
+      let menorDiff = Infinity;
+      fechasMap.forEach((dateObj, strFecha) => {
+        if (dateObj && dateObj >= hoy) {
+          const diff = dateObj - hoy;
+          if (diff < menorDiff) {
+            menorDiff = diff;
+            proximaFecha = strFecha;
+          }
+        }
+      });
+      if (proximaFecha === "ALL" && fechasOrdenadas.length > 0) {
+        proximaFecha = fechasOrdenadas[0];
+      }
+
+      const selFecha = document.getElementById("filter-fecha");
+      selFecha.innerHTML = `<option value="ALL">Todas las fechas (${todosLosCambios.length})</option>`;
+      fechasOrdenadas.forEach(f => {
+        const count = todosLosCambios.filter(c => c.fechaRelease === f).length;
+        const esProxima = f === proximaFecha;
+        const opt = document.createElement("option");
+        opt.value = f;
+        opt.textContent = esProxima ? `⭐ ${f} — Próxima Release (${count})` : `${f} (${count})`;
+        if (esProxima) opt.selected = true;
+        selFecha.appendChild(opt);
+      });
+
+      rellenarSelect("filter-pais", Array.from(paisesSet).sort());
+      rellenarSelect("filter-owner", Array.from(ownersSet).sort());
+      rellenarSelect("filter-estado", Array.from(estadosSet).sort());
+
+      renderizarTablaReleases();
+    }
+
+    function rellenarSelect(id, valores) {
+      const sel = document.getElementById(id);
+      valores.forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        sel.appendChild(opt);
+      });
+    }
+
+    function renderizarTablaReleases() {
+      const fFecha = document.getElementById("filter-fecha").value;
+      const fPlat = document.getElementById("filter-plataforma").value;
+      const fPais = document.getElementById("filter-pais").value;
+      const fOwner = document.getElementById("filter-owner").value;
+      const fEstado = document.getElementById("filter-estado").value;
+      const fSearch = document.getElementById("filter-search").value.toLowerCase().trim();
+
+      const filtrados = todosLosCambios.filter(item => {
+        if (fFecha !== "ALL" && item.fechaRelease !== fFecha) return false;
+        if (fPlat === "QUANTUM_ANY" && !item.plataforma.toLowerCase().includes("quantum")) return false;
+        if (fPlat !== "ALL" && fPlat !== "QUANTUM_ANY" && item.plataforma !== fPlat) return false;
+        if (fPais !== "ALL" && item.pais !== fPais) return false;
+        if (fOwner !== "ALL" && item.owner !== fOwner) return false;
+        if (fEstado !== "ALL" && item.estado !== fEstado) return false;
+        if (fSearch) {
+          const texto = `${item.operativa} ${item.urls} ${item.queSeCambia} ${item.perfil} ${item.owner} ${item.jira}`.toLowerCase();
+          if (!texto.includes(fSearch)) return false;
+        }
+        return true;
+      });
+
+      const numTodo = filtrados.filter(i => i.estado.toLowerCase().includes("todo")).length;
+      const numDone = filtrados.filter(i => i.estado.toLowerCase().includes("implementado")).length;
+
+      document.getElementById("stat-total").textContent = `Total: ${filtrados.length}`;
+      document.getElementById("stat-todo").textContent = `ToDo: ${numTodo}`;
+      document.getElementById("stat-done").textContent = `Implementados: ${numDone}`;
+      document.getElementById("release-subtitle").textContent =
+        fFecha === "ALL" ? "Mostrando histórico completo de cambios" : `Cambios planificados para la release del ${fFecha}`;
+
+      const tbody = document.getElementById("releases-tbody");
+      tbody.innerHTML = "";
+
+      if (filtrados.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:1.5rem; color:var(--muted);">No hay cambios que coincidan con estos filtros.</td></tr>`;
+        return;
+      }
+
+      filtrados.forEach(item => {
+        const tr = document.createElement("tr");
+
+        const pLower = item.pais.toLowerCase();
+        const clasePais = ["es", "it", "de"].includes(pLower) ? `pais-${pLower}` : "pais-default";
+
+        let clasePlat = "plat-quantum";
+        if (item.plataforma.toLowerCase() === "tealium") clasePlat = "plat-tealium";
+        else if (item.plataforma.toLowerCase().includes("y")) clasePlat = "plat-ambos";
+
+        let claseCambio = "cambio-default";
+        const cLower = item.queSeCambia.toLowerCase();
+        if (cLower.includes("core")) claseCambio = "cambio-core";
+        else if (cLower.includes("ofus")) claseCambio = "cambio-ofus";
+        else if (cLower.includes("conf")) claseCambio = "cambio-conf";
+
+        const claseEstado = item.estado.toLowerCase().includes("implementado") ? "estado-ok" : "estado-todo";
+
+        let htmlJira = "-";
+        if (item.jira && item.jira.startsWith("http")) {
+          const partes = item.jira.replace(/\/$/, "").split("/");
+          const ticketKey = partes[partes.length - 1] || "Jira";
+          htmlJira = `<a href="${item.jira}" target="_blank" class="btn-jira">🔗 ${ticketKey}</a>`;
+        }
+
+        tr.innerHTML = `
+          <td><span class="chip ${clasePais}">${item.pais || "-"}</span></td>
+          <td><span class="chip perfil-chip">${item.perfil || "-"}</span></td>
+          <td><span class="chip ${claseCambio}">${item.queSeCambia || "-"}</span></td>
+          <td><span class="chip ${clasePlat}">${item.plataforma || "-"}</span></td>
+          <td><strong>${item.operativa || "-"}</strong></td>
+          <td class="url-code">${item.urls || "-"}</td>
+          <td>${item.owner || "-"}</td>
+          <td><strong>${item.fechaRelease || "-"}</strong></td>
+          <td><span class="chip ${claseEstado}">${item.estado || "-"}</span></td>
+          <td>${htmlJira}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    ["filter-fecha", "filter-plataforma", "filter-pais", "filter-owner", "filter-estado", "filter-search"].forEach(id => {
+      document.getElementById(id).addEventListener("input", renderizarTablaReleases);
+    });
   </script>
 
-  <!-- PEGA AQUÍ DEBAJO LA URL DE TU APPS SCRIPT (terminada en /exec) -->
+  <!-- ==================================================================== -->
+  <!-- PEGA AQUÍ DEBAJO LA URL DE TU APPS SCRIPT (terminada en /exec)       -->
+  <!-- ==================================================================== -->
   <script src="https://script.google.com/macros/s/AKfycbxXbNrHBztvNgV3eeyEUmYYZwqSKTwz3-L24NiNDrz5FzXqiaACLUeB5Psvm2xMf5xe/exec"></script>
 
 </body>
