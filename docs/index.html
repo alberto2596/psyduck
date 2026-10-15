@@ -6,467 +6,127 @@
   <title>Portal Psyduck | Quantum Metric Releases</title>
   <style>
     :root {
-      --yellow: #facc15;
-      --yellow-dark: #eab308;
-      --yellow-soft: #fef9c3;
-      --dark: #0f172a;
-      --dark-card: #1e293b;
-      --bg: #f1f5f9;
-      --card: #ffffff;
-      --border: #e2e8f0;
-      --muted: #64748b;
-      --primary: #0284c7;
+      --yellow: #facc15; --yellow-dark: #eab308; --yellow-soft: #fef9c3;
+      --dark: #0f172a; --bg: #f1f5f9; --card: #ffffff;
+      --border: #e2e8f0; --muted: #64748b; --tealium: #0284c7; --tealium-soft: #e0f2fe;
     }
     * { box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg);
-      color: var(--dark);
-      margin: 0;
-      padding: 1rem;
-      font-size: 0.88rem;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 1rem; font-size: 0.88rem; }
     .container { max-width: 1360px; margin: 0 auto; }
 
-    /* =========================================================================
-       1. NUEVO WIDGET DE ROL PSYDUCK Y CUADRANTE DE TARJETAS
-       ========================================================================= */
-    .psyduck-bar {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: white;
-      border-radius: 14px;
-      padding: 0.85rem 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.12);
-      border-left: 6px solid var(--yellow);
-      margin-bottom: 0.75rem;
-    }
-    .brand-zone {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-    .duck-avatar {
-      width: 42px;
-      height: 42px;
-      background: var(--yellow);
-      color: var(--dark);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 2px 8px rgba(250, 204, 21, 0.35);
-    }
-    .brand-zone h1 {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-    }
-    .brand-zone small {
-      color: #94a3b8;
-      font-size: 0.76rem;
-    }
+    /* 1. Barra superior Psyduck */
+    .psyduck-bar { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; border-radius: 14px; padding: 0.85rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: 0 4px 15px rgba(15,23,42,0.12); border-left: 6px solid var(--yellow); margin-bottom: 0.75rem; }
+    .brand-zone { display: flex; align-items: center; gap: 0.85rem; }
+    .duck-avatar { width: 42px; height: 42px; background: var(--yellow); color: var(--dark); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .brand-zone h1 { margin: 0; font-size: 1.1rem; font-weight: 800; }
+    .brand-zone small { color: #94a3b8; font-size: 0.76rem; }
+    .shift-widget { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .shift-capsule { display: flex; align-items: center; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; overflow: hidden; }
+    .shift-now { background: var(--yellow); color: var(--dark); padding: 0.45rem 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+    .pulse-dot { width: 8px; height: 8px; background: #16a34a; border-radius: 50%; box-shadow: 0 0 0 3px rgba(22,163,74,0.25); }
+    .shift-label { font-size: 0.68rem; text-transform: uppercase; font-weight: 800; opacity: 0.75; display: block; line-height: 1; }
+    .shift-person { font-size: 0.95rem; font-weight: 800; }
+    .shift-dates { font-size: 0.73rem; font-weight: 600; opacity: 0.85; }
+    .shift-next { padding: 0.45rem 0.85rem; color: #e2e8f0; font-size: 0.8rem; }
+    .btn-top { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.78rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+    .btn-top:hover { background: rgba(255,255,255,0.2); }
+    .btn-sheets { background: #107c41; border-color: #15803d; }
 
-    /* Tarjeta cápsula del turno actual y relevo */
-    .shift-widget {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .shift-capsule {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .shift-now {
-      background: var(--yellow);
-      color: var(--dark);
-      padding: 0.45rem 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background: #16a34a;
-      border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
-    }
-    .shift-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      font-weight: 800;
-      opacity: 0.75;
-      display: block;
-      line-height: 1;
-    }
-    .shift-person {
-      font-size: 0.95rem;
-      font-weight: 800;
-    }
-    .shift-dates {
-      font-size: 0.73rem;
-      font-weight: 600;
-      opacity: 0.85;
-    }
-    .shift-next {
-      padding: 0.45rem 0.85rem;
-      color: #e2e8f0;
-      font-size: 0.8rem;
-    }
-    .btn-toggle-roster {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.45rem 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.78rem;
-      font-weight: 600;
-      transition: background 0.15s;
-    }
-    .btn-toggle-roster:hover { background: rgba(255, 255, 255, 0.2); }
-
-    /* Panel desplegable del cuadrante rediseñado en tarjetas limpias */
-    .roster-panel {
-      display: none;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
+    /* Cuadrante en tarjetas */
+    .roster-panel { display: none; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
     .roster-panel.open { display: block; }
-    .roster-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 0.85rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .team-avatars {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .member-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.28rem 0.65rem;
-      border-radius: 999px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-    .member-badge.active {
-      background: var(--yellow-soft);
-      border-color: var(--yellow-dark);
-      color: var(--dark);
-      font-weight: 800;
-    }
-    .avatar-circle {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--dark);
-      color: white;
-      font-size: 0.65rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Grid de tarjetas de semanas (en lugar de tabla deformada) */
-    .weeks-carousel {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-      gap: 0.65rem;
-      max-height: 240px;
-      overflow-y: auto;
-      padding: 0.2rem;
-    }
-    .week-card {
-      border: 1px solid var(--border);
-      background: #f8fafc;
-      border-radius: 10px;
-      padding: 0.65rem 0.8rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    .roster-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem; padding-bottom: 0.65rem; border-bottom: 1px solid var(--border); }
+    .team-avatars { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .member-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.28rem 0.65rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); font-size: 0.78rem; font-weight: 600; }
+    .member-badge.active { background: var(--yellow-soft); border-color: var(--yellow-dark); color: var(--dark); font-weight: 800; }
+    .avatar-circle { width: 20px; height: 20px; border-radius: 50%; background: var(--dark); color: white; font-size: 0.65rem; display: inline-flex; align-items: center; justify-content: center; }
+    .weeks-carousel { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 0.65rem; max-height: 240px; overflow-y: auto; padding: 0.2rem; }
+    .week-card { border: 1px solid var(--border); background: #f8fafc; border-radius: 10px; padding: 0.65rem 0.8rem; }
     .week-card.past { opacity: 0.55; }
-    .week-card.current {
-      background: var(--yellow-soft);
-      border: 2px solid var(--yellow-dark);
-      box-shadow: 0 3px 10px rgba(234, 179, 8, 0.2);
-    }
-    .week-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
+    .week-card.current { background: var(--yellow-soft); border: 2px solid var(--yellow-dark); }
+    .week-title { font-size: 0.72rem; font-weight: 700; color: var(--muted); margin-bottom: 0.35rem; }
     .week-card.current .week-title { color: #854d0e; }
-    .week-person {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .week-person { font-size: 0.92rem; font-weight: 800; display: flex; align-items: center; justify-content: space-between; }
 
-    /* =========================================================================
-       2. ZONA PRINCIPAL: TABLA DE RELEASES + BOTÓN NUEVA FILA
-       ========================================================================= */
-    .main-workspace {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    }
-    .workspace-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
+    /* 2. Pestañas */
+    .tabs-nav { display: flex; gap: 0.5rem; margin-bottom: -1px; padding-left: 0.5rem; }
+    .tab-btn { background: #e2e8f0; color: #475569; border: 1px solid var(--border); border-bottom: none; padding: 0.65rem 1.25rem; border-radius: 10px 10px 0 0; font-weight: 700; font-size: 0.86rem; cursor: pointer; }
+    .tab-btn.active { background: var(--card); color: var(--dark); border-top: 3px solid var(--yellow-dark); padding-bottom: 0.75rem; }
+    .main-workspace { background: var(--card); border: 1px solid var(--border); border-radius: 0 12px 12px 12px; padding: 1.35rem; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* 3. Pestaña Cambios Release */
+    .workspace-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
     .workspace-header h2 { margin: 0; font-size: 1.15rem; }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-    .stat-badge {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-    .btn-add {
-      background: var(--dark);
-      color: var(--yellow);
-      border: none;
-      padding: 0.5rem 0.95rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
-    }
-    .btn-add:hover { background: #1e293b; }
-
-    /* Filtros */
-    .filters-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-      gap: 0.65rem;
-      background: #f8fafc;
-      padding: 0.85rem;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      margin-bottom: 1rem;
-    }
-    .filter-group label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
-    }
-    .filter-group select, .filter-group input {
-      width: 100%;
-      padding: 0.42rem 0.5rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      background: white;
-    }
-
-    /* Tabla */
+    .header-actions { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .stat-badge { background: var(--bg); border: 1px solid var(--border); padding: 0.35rem 0.7rem; border-radius: 8px; font-size: 0.78rem; font-weight: 700; }
+    .btn-add { background: var(--dark); color: var(--yellow); border: none; padding: 0.5rem 0.95rem; border-radius: 8px; font-weight: 700; font-size: 0.82rem; cursor: pointer; }
+    .filters-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 0.65rem; background: #f8fafc; padding: 0.85rem; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 1rem; }
+    .filter-group label { display: block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+    .filter-group select, .filter-group input { width: 100%; padding: 0.42rem 0.5rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.82rem; background: white; }
     .table-container { overflow-x: auto; }
-    table.releases-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.81rem;
-    }
-    .releases-table th {
-      background: #f1f5f9;
-      color: #334155;
-      text-align: left;
-      padding: 0.6rem 0.65rem;
-      border-bottom: 2px solid var(--border);
-      white-space: nowrap;
-    }
-    .releases-table td {
-      padding: 0.55rem 0.65rem;
-      border-bottom: 1px solid var(--border);
-      vertical-align: middle;
-    }
-    .releases-table tr:hover { background-color: #f8fafc; }
-
-    /* Chips */
-    .chip {
-      display: inline-block;
-      padding: 0.16rem 0.55rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.73rem;
-      white-space: nowrap;
-    }
-    .pais-es { background: #dcfce7; color: #166534; }
-    .pais-it { background: #fee2e2; color: #991b1b; }
-    .pais-de { background: #ede9fe; color: #5b21b6; }
-    .pais-default { background: #e2e8f0; color: #334155; }
-
-    .plat-quantum { background: #fee2e2; color: #b91c1c; }
-    .plat-tealium { background: #dbeafe; color: #1d4ed8; }
-    .plat-ambos { background: #fef3c7; color: #92400e; }
-
-    .cambio-core { background: #f3e8ff; color: #6b21a8; }
-    .cambio-ofus { background: #fee2e2; color: #991b1b; }
-    .cambio-conf { background: #fef3c7; color: #92400e; }
-    .cambio-default { background: #f1f5f9; color: #334155; }
-
-    .estado-todo { background: #fecaca; color: #991b1b; }
-    .estado-ok { background: #bbf7d0; color: #166534; }
-
+    table.releases-table { width: 100%; border-collapse: collapse; font-size: 0.81rem; }
+    .releases-table th { background: #f1f5f9; color: #334155; text-align: left; padding: 0.6rem 0.65rem; border-bottom: 2px solid var(--border); white-space: nowrap; }
+    .releases-table td { padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .releases-table tr:hover { background: #f8fafc; }
+    .chip { display: inline-block; padding: 0.16rem 0.55rem; border-radius: 999px; font-weight: 600; font-size: 0.73rem; white-space: nowrap; }
+    .pais-es { background: #dcfce7; color: #166534; } .pais-it { background: #fee2e2; color: #991b1b; } .pais-de { background: #ede9fe; color: #5b21b6; } .pais-default { background: #e2e8f0; color: #334155; }
+    .plat-quantum { background: #fee2e2; color: #b91c1c; } .plat-tealium { background: #dbeafe; color: #1d4ed8; } .plat-ambos { background: #fef3c7; color: #92400e; }
+    .cambio-core { background: #f3e8ff; color: #6b21a8; } .cambio-ofus { background: #fee2e2; color: #991b1b; } .cambio-conf { background: #fef3c7; color: #92400e; } .cambio-default { background: #f1f5f9; color: #334155; }
+    .estado-todo { background: #fecaca; color: #991b1b; } .estado-ok { background: #bbf7d0; color: #166534; }
     .perfil-chip { background: #f3e8ff; color: #581c87; font-family: monospace; font-size: 0.72rem; }
     .url-code { font-family: monospace; font-size: 0.75rem; color: #334155; max-width: 260px; word-break: break-all; }
-    .btn-jira {
-      display: inline-block;
-      background: #eff6ff;
-      color: #2563eb;
-      border: 1px solid #bfdbfe;
-      padding: 0.2rem 0.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.74rem;
-      white-space: nowrap;
-    }
+    .btn-jira { display: inline-block; background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 0.2rem 0.5rem; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.74rem; }
 
-    /* =========================================================================
-       3. MODAL PARA AÑADIR NUEVA FILA AL GOOGLE SHEETS
-       ========================================================================= */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(2px);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
+    /* 4. Pestaña Proceso Release (Tealium) */
+    .process-section { border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; background: #f8fafc; }
+    .process-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; border-bottom: 2px solid var(--border); padding-bottom: 0.85rem; margin-bottom: 1.15rem; }
+    .process-title { display: flex; align-items: center; gap: 0.65rem; }
+    .tealium-badge { background: var(--tealium); color: white; font-weight: 800; padding: 0.3rem 0.7rem; border-radius: 8px; font-size: 0.78rem; }
+    .rule-callout { background: white; border-left: 4px solid var(--tealium); padding: 0.85rem 1.1rem; border-radius: 8px; margin-bottom: 1.25rem; }
+    .wizard-box { background: white; border: 1px solid #cbd5e1; border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1.25rem; }
+    .wizard-questions { display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.9rem; }
+    .q-group { display: flex; align-items: center; gap: 0.5rem; background: #f1f5f9; padding: 0.45rem 0.8rem; border-radius: 8px; font-weight: 600; }
+    .q-group select { padding: 0.3rem 0.55rem; border-radius: 6px; border: 1px solid #94a3b8; font-weight: 700; background: white; }
+    .wizard-result { background: var(--tealium-soft); border: 1px solid #7dd3fc; color: #0c4a6e; padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.86rem; }
+    .scenarios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+    .scenario-card { background: white; border: 2px solid var(--border); border-radius: 12px; padding: 1.15rem; transition: all 0.2s ease; }
+    .scenario-card.highlighted { border-color: var(--tealium); box-shadow: 0 6px 18px rgba(2,132,199,0.14); transform: translateY(-2px); }
+    .scenario-num { display: inline-block; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 0.22rem 0.6rem; border-radius: 999px; margin-bottom: 0.6rem; }
+    .sc-1 .scenario-num { background: #dcfce7; color: #166534; } .sc-2 .scenario-num { background: #fef3c7; color: #92400e; } .sc-3 .scenario-num { background: #fee2e2; color: #991b1b; }
+    .scenario-card h4 { margin: 0 0 0.75rem 0; font-size: 0.96rem; line-height: 1.35; }
+    .step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+    .step-list li { background: #f8fafc; border: 1px solid var(--border); padding: 0.55rem 0.7rem; border-radius: 8px; font-size: 0.82rem; }
+    .step-key { display: block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
+    .code-inline { font-family: monospace; background: #e2e8f0; padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 700; }
+
+    /* 5. Modal añadir fila */
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); z-index: 999; align-items: center; justify-content: center; padding: 1rem; }
     .modal-backdrop.open { display: flex; }
-    .modal-card {
-      background: white;
-      width: 100%;
-      max-width: 640px;
-      border-radius: 14px;
-      padding: 1.5rem;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.2);
-      border-top: 5px solid var(--yellow);
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
+    .modal-card { background: white; width: 100%; max-width: 640px; border-radius: 14px; padding: 1.5rem; border-top: 5px solid var(--yellow); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
     .modal-header h3 { margin: 0; font-size: 1.1rem; }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.85rem;
-    }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
     .form-full { grid-column: 1 / -1; }
-    .form-field label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      color: #334155;
-    }
-    .form-field input, .form-field select {
-      width: 100%;
-      padding: 0.5rem 0.6rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 7px;
-      font-size: 0.85rem;
-    }
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.6rem;
-      margin-top: 1.25rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-    .btn-cancel {
-      background: #f1f5f9;
-      color: #334155;
-      border: 1px solid #cbd5e1;
-      padding: 0.5rem 1rem;
-      border-radius: 7px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .btn-save {
-      background: #16a34a;
-      color: white;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 7px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .btn-save:disabled { opacity: 0.6; cursor: wait; }
+    .form-field label { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.3rem; color: #334155; }
+    .form-field input, .form-field select { width: 100%; padding: 0.5rem 0.6rem; border: 1px solid #cbd5e1; border-radius: 7px; font-size: 0.85rem; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .btn-cancel { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 0.5rem 1rem; border-radius: 7px; font-weight: 600; cursor: pointer; }
+    .btn-save { background: #16a34a; color: white; border: none; padding: 0.5rem 1.2rem; border-radius: 7px; font-weight: 700; cursor: pointer; }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- 1. BARRA SUPERIOR REDISEÑADA CON EL ROL PSYDUCK -->
     <header class="psyduck-bar">
       <div class="brand-zone">
         <div class="duck-avatar">🦆</div>
         <div>
           <h1>Portal Psyduck — Quantum Metric</h1>
-          <small>Control de Releases y Turnos del Equipo</small>
+          <small>Control de Releases, Procedimientos y Turnos</small>
         </div>
       </div>
-
       <div class="shift-widget">
         <div class="shift-capsule">
           <div class="shift-now">
@@ -482,181 +142,167 @@
             <strong id="next-psyduck">-</strong>
           </div>
         </div>
-
-        <button class="btn-toggle-roster" id="btn-roster">
-          📅 Cuadrante y Equipo ▾
-        </button>
+        <button class="btn-top" id="btn-roster">📅 Cuadrante y Equipo ▾</button>
+        <a href="https://docs.google.com/spreadsheets/d/1FdQphS9U1p9VbDQRXsBssSVe8D5eH9d-01R6CE065kk/edit?gid=0#gid=0" target="_blank" class="btn-top btn-sheets">📊 Abrir Google Sheets ↗</a>
       </div>
     </header>
 
-    <!-- 2. PANEL DE CUADRANTE EN TARJETAS LIMPIAS -->
     <section class="roster-panel" id="roster-panel">
       <div class="roster-top">
-        <div class="team-avatars" id="team-grid">
-          <strong style="font-size:0.78rem; color:var(--muted); margin-right:0.25rem;">Censo Psyduck:</strong>
-        </div>
-        <div style="display:flex; gap:0.5rem; align-items:center;">
-          <label style="font-size:0.76rem; color:var(--muted); cursor:pointer;">
-            <input type="checkbox" id="chk-all-weeks"> Mostrar histórico completo de semanas
-          </label>
-        </div>
+        <div class="team-avatars" id="team-grid"><strong style="font-size:0.78rem; color:var(--muted);">Equipo:</strong></div>
+        <label style="font-size:0.76rem; color:var(--muted); cursor:pointer;">
+          <input type="checkbox" id="chk-all-weeks"> Mostrar histórico completo de semanas
+        </label>
       </div>
       <div class="weeks-carousel" id="weeks-grid"></div>
     </section>
 
-    <!-- 3. PANEL PRINCIPAL: CAMBIOS DE LA PRÓXIMA RELEASE -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="tab-releases">🚀 Cambios de Release</button>
+      <button class="tab-btn" data-tab="tab-proceso">📖 Proceso Release</button>
+    </nav>
+
     <main class="main-workspace">
-      <div class="workspace-header">
-        <div>
-          <h2>🚀 Cambios para la Release</h2>
-          <small style="color:var(--muted);" id="release-subtitle">Sincronizando cambios desde Google Sheets...</small>
+      <!-- PESTAÑA 1: CAMBIOS RELEASE -->
+      <div class="tab-pane active" id="tab-releases">
+        <div class="workspace-header">
+          <div>
+            <h2>🚀 Cambios para la Release</h2>
+            <small style="color:var(--muted);" id="release-subtitle">Sincronizando cambios desde Google Sheets...</small>
+          </div>
+          <div class="header-actions">
+            <span class="stat-badge" id="stat-total">Total: 0</span>
+            <span class="stat-badge" style="background:#fee2e2; color:#991b1b; border-color:#fecaca;" id="stat-todo">ToDo: 0</span>
+            <span class="stat-badge" style="background:#dcfce7; color:#166534; border-color:#bbf7d0;" id="stat-done">Implementados: 0</span>
+            <button class="btn-add" id="btn-open-modal">➕ Añadir Cambio al Excel</button>
+          </div>
         </div>
-        <div class="header-actions">
-          <span class="stat-badge" id="stat-total">Total: 0</span>
-          <span class="stat-badge" style="background:#fee2e2; color:#991b1b; border-color:#fecaca;" id="stat-todo">ToDo: 0</span>
-          <span class="stat-badge" style="background:#dcfce7; color:#166534; border-color:#bbf7d0;" id="stat-done">Implementados: 0</span>
-          <button class="btn-add" id="btn-open-modal">➕ Añadir Cambio al Excel</button>
+
+        <div class="filters-bar">
+          <div class="filter-group"><label>📅 Fecha Release</label><select id="filter-fecha"></select></div>
+          <div class="filter-group">
+            <label>⚙️ Plataforma</label>
+            <select id="filter-plataforma">
+              <option value="ALL">Todas (Quantum + Tealium)</option>
+              <option value="QUANTUM_ANY">Con Quantum (Quantum + Ambos)</option>
+              <option value="Quantum">Exclusivo Quantum</option>
+              <option value="Tealium y Quantum">Tealium y Quantum</option>
+              <option value="Tealium">Exclusivo Tealium</option>
+            </select>
+          </div>
+          <div class="filter-group"><label>🌍 País</label><select id="filter-pais"><option value="ALL">Todos los países</option></select></div>
+          <div class="filter-group"><label>👤 Owner DigitalTools</label><select id="filter-owner"><option value="ALL">Todos los Owners</option></select></div>
+          <div class="filter-group"><label>📌 Estado</label><select id="filter-estado"><option value="ALL">Todos los estados</option></select></div>
+          <div class="filter-group"><label>🔍 Buscar cambio / URL</label><input type="text" id="filter-search" placeholder="Ej: Ofuscación, NPS, Core..."></div>
+        </div>
+
+        <div class="table-container">
+          <table class="releases-table">
+            <thead>
+              <tr><th>País</th><th>Perfil</th><th>Qué se cambia</th><th>Plataforma</th><th>Operativa / Cambio</th><th>URLs</th><th>Owner</th><th>Fecha Release</th><th>Estado</th><th>Jira</th></tr>
+            </thead>
+            <tbody id="releases-tbody">
+              <tr><td colspan="10" style="text-align:center; padding:2rem; color:var(--muted);">Cargando cambios desde Google Sheets...</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- FILTROS -->
-      <div class="filters-bar">
-        <div class="filter-group">
-          <label>📅 Fecha Release</label>
-          <select id="filter-fecha"></select>
-        </div>
-        <div class="filter-group">
-          <label>⚙️ Plataforma</label>
-          <select id="filter-plataforma">
-            <option value="ALL">Todas (Quantum + Tealium)</option>
-            <option value="QUANTUM_ANY">Con Quantum (Quantum + Ambos)</option>
-            <option value="Quantum">Exclusivo Quantum</option>
-            <option value="Tealium y Quantum">Tealium y Quantum</option>
-            <option value="Tealium">Exclusivo Tealium</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label>🌍 País</label>
-          <select id="filter-pais"><option value="ALL">Todos los países</option></select>
-        </div>
-        <div class="filter-group">
-          <label>👤 Owner DigitalTools</label>
-          <select id="filter-owner"><option value="ALL">Todos los Owners</option></select>
-        </div>
-        <div class="filter-group">
-          <label>📌 Estado</label>
-          <select id="filter-estado"><option value="ALL">Todos los estados</option></select>
-        </div>
-        <div class="filter-group">
-          <label>🔍 Buscar cambio / URL</label>
-          <input type="text" id="filter-search" placeholder="Ej: Ofuscación, NPS, Core...">
-        </div>
-      </div>
+      <!-- PESTAÑA 2: PROCESO RELEASE -->
+      <div class="tab-pane" id="tab-proceso">
+        <div class="process-section">
+          <div class="process-header">
+            <div class="process-title">
+              <span class="tealium-badge">TEALIUM</span>
+              <h2 style="margin:0; font-size:1.15rem;">Cómo proceder a guardar una nueva versión en Tealium</h2>
+            </div>
+            <small style="color:var(--muted);">
+              Fechas de ejemplo: <strong class="lbl-r1">21/10/2026</strong> (objetivo) y <strong class="lbl-r2">04/11/2026</strong> (siguiente)
+            </small>
+          </div>
 
-      <!-- TABLA -->
-      <div class="table-container">
-        <table class="releases-table">
-          <thead>
-            <tr>
-              <th>País</th>
-              <th>Perfil</th>
-              <th>Qué se cambia</th>
-              <th>Plataforma</th>
-              <th>Operativa / Cambio</th>
-              <th>URLs</th>
-              <th>Owner</th>
-              <th>Fecha Release</th>
-              <th>Estado</th>
-              <th>Jira</th>
-            </tr>
-          </thead>
-          <tbody id="releases-tbody">
-            <tr>
-              <td colspan="10" style="text-align:center; padding:2rem; color:var(--muted);">
-                Cargando cambios desde Google Sheets...
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="rule-callout">
+            <strong>🔍 Paso 0 (Comprobación previa):</strong>
+            Lo primero que hay que mirar es si hay <strong>RC (Release Candidate)</strong> para la fecha que yo quiero (ej. <strong class="lbl-r1">21/10/2026</strong>) y para la siguiente release (ej. <strong class="lbl-r2">04/11/2026</strong>).
+          </div>
+
+          <div class="wizard-box">
+            <div style="font-weight:800; margin-bottom:0.65rem; font-size:0.84rem; color:#334155;">🧭 Asistente interactivo: ¿Qué hay creado ahora mismo en Tealium?</div>
+            <div class="wizard-questions">
+              <div class="q-group">
+                <span>1. ¿Hay RC para la fecha que quieres (<strong class="lbl-r1">21/10/2026</strong>)?</span>
+                <select id="wiz-rc1"><option value="SI">Sí hay RC</option><option value="NO">No hay RC</option></select>
+              </div>
+              <div class="q-group" id="wiz-q2-container">
+                <span>2. ¿Hay RC para la siguiente release (<strong class="lbl-r2">04/11/2026</strong>)?</span>
+                <select id="wiz-rc2"><option value="SI">Sí hay RC</option><option value="NO">No hay RC</option></select>
+              </div>
+            </div>
+            <div class="wizard-result" id="wizard-output"></div>
+          </div>
+
+          <div class="scenarios-grid">
+            <div class="scenario-card sc-1 highlighted" id="card-sc-1">
+              <span class="scenario-num">Escenario 1 · Hay RC de ambos días</span>
+              <h4>Existe RC tanto del <span class="lbl-r1">21/10/2026</span> como del <span class="lbl-r2">04/11/2026</span></h4>
+              <ul class="step-list">
+                <li><span class="step-key">1. De dónde partir</span>Partimos de la del <strong class="lbl-r1">21/10/2026</strong> (si queremos preparar la del 21).</li>
+                <li><span class="step-key">2. Dónde guardar</span>Guardamos en el <strong>mismo sitio</strong> donde esté guardada la del <strong class="lbl-r1">21/10/2026</strong>.</li>
+                <li><span class="step-key">3. Título / Nomenclatura</span><strong>Respetando el nombre</strong> que ya tiene la versión.</li>
+                <li><span class="step-key">4. Comentario / Descripción</span>Añadir con un <span class="code-inline">+ nuestro cambio</span> en el comentario.</li>
+              </ul>
+            </div>
+
+            <div class="scenario-card sc-2" id="card-sc-2">
+              <span class="scenario-num">Escenario 2 · No hay RC para la siguiente</span>
+              <h4>Hay RC del <span class="lbl-r1">21/10/2026</span>, pero NO hay RC para el <span class="lbl-r2">04/11/2026</span></h4>
+              <ul class="step-list">
+                <li><span class="step-key">1. De dónde partir</span>Partimos de la del <strong class="lbl-r1">21/10/2026</strong>.</li>
+                <li><span class="step-key">2. Dónde guardar</span>Guardaremos en <span class="code-inline">DEV / QA</span>.</li>
+                <li><span class="step-key">3. Título / Nomenclatura</span><strong>Respetando nomenclatura</strong>.</li>
+                <li><span class="step-key">4. Comentario / Descripción</span>Añadir un <span class="code-inline">+ con nuestro cambio</span> en la descripción.</li>
+              </ul>
+            </div>
+
+            <div class="scenario-card sc-3" id="card-sc-3">
+              <span class="scenario-num">Escenario 3 · No hay ninguna RC</span>
+              <h4>No existe ninguna RC creada todavía</h4>
+              <ul class="step-list">
+                <li><span class="step-key">1. De dónde partir</span>Partimos directamente de <span class="code-inline">PROD</span>.</li>
+                <li><span class="step-key">2. Dónde guardar</span>Guardamos nuestra versión en <span class="code-inline">DEV / QA</span>.</li>
+                <li><span class="step-key">3. Título / Nomenclatura</span><strong>Subiendo un número al título</strong> respecto a PROD.</li>
+                <li><span class="step-key">4. Comentario / Descripción</span>Añadir el cambio al comentario.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
 
-  <!-- =========================================================================
-       4. MODAL PARA AÑADIR NUEVA FILA DIRECTAMENTE AL GOOGLE SHEETS
-       ========================================================================= -->
+  <!-- MODAL AÑADIR FILA -->
   <div class="modal-backdrop" id="modal-add">
     <div class="modal-card">
       <div class="modal-header">
         <h3>➕ Añadir nuevo cambio al Excel de Releases</h3>
         <button class="btn-cancel" id="btn-close-modal" style="padding:0.25rem 0.6rem;">✕</button>
       </div>
-
       <form id="form-new-row">
         <div class="form-grid">
-          <div class="form-field">
-            <label>País *</label>
-            <input type="text" id="new-pais" list="list-pais" placeholder="es, it, de..." required>
-            <datalist id="list-pais"></datalist>
-          </div>
-
-          <div class="form-field">
-            <label>Perfil *</label>
-            <input type="text" id="new-perfil" list="list-perfil" placeholder="**-main-mobileapp..." required>
-            <datalist id="list-perfil"></datalist>
-          </div>
-
-          <div class="form-field">
-            <label>Qué se cambia *</label>
-            <input type="text" id="new-cambio" list="list-cambio" placeholder="Mantenimiento Ofuscación, Core..." required>
-            <datalist id="list-cambio"></datalist>
-          </div>
-
+          <div class="form-field"><label>País *</label><input type="text" id="new-pais" list="list-pais" placeholder="es, it, de..." required><datalist id="list-pais"></datalist></div>
+          <div class="form-field"><label>Perfil *</label><input type="text" id="new-perfil" list="list-perfil" placeholder="**-main-mobileapp..." required><datalist id="list-perfil"></datalist></div>
+          <div class="form-field"><label>Qué se cambia *</label><input type="text" id="new-cambio" list="list-cambio" placeholder="Mantenimiento Ofuscación, Core..." required><datalist id="list-cambio"></datalist></div>
           <div class="form-field">
             <label>Plataforma *</label>
-            <select id="new-plataforma" required>
-              <option value="Quantum">Quantum</option>
-              <option value="Tealium y Quantum">Tealium y Quantum</option>
-              <option value="Tealium">Tealium</option>
-            </select>
+            <select id="new-plataforma" required><option value="Quantum">Quantum</option><option value="Tealium y Quantum">Tealium y Quantum</option><option value="Tealium">Tealium</option></select>
           </div>
-
-          <div class="form-field form-full">
-            <label>Operativa / Cambio *</label>
-            <input type="text" id="new-operativa" placeholder="Ej: Mantenimiento Ofuscación Contratación..." required>
-          </div>
-
-          <div class="form-field form-full">
-            <label>URLs (escribir todas las necesarias)</label>
-            <input type="text" id="new-urls" placeholder="Ej: /insurance-pets o -">
-          </div>
-
-          <div class="form-field">
-            <label>Owner DigitalTools *</label>
-            <input type="text" id="new-owner" list="list-owner" placeholder="Alberto, Naiara, Ivan..." required>
-            <datalist id="list-owner"></datalist>
-          </div>
-
-          <div class="form-field">
-            <label>Fecha Release (DD/MM/YYYY) *</label>
-            <input type="text" id="new-fecha" list="list-fecha" placeholder="21/10/2026" required>
-            <datalist id="list-fecha"></datalist>
-          </div>
-
-          <div class="form-field">
-            <label>Estado</label>
-            <select id="new-estado">
-              <option value="ToDo">ToDo</option>
-              <option value="Implementado">Implementado</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label>URL Jira Desarrollo</label>
-            <input type="url" id="new-jira" placeholder="https://jira.globaldevtools.bbva.com/browse/...">
-          </div>
+          <div class="form-field form-full"><label>Operativa / Cambio *</label><input type="text" id="new-operativa" placeholder="Ej: Mantenimiento Ofuscación Contratación..." required></div>
+          <div class="form-field form-full"><label>URLs (escribir todas las necesarias)</label><input type="text" id="new-urls" placeholder="Ej: /insurance-pets o -"></div>
+          <div class="form-field"><label>Owner DigitalTools *</label><input type="text" id="new-owner" list="list-owner" placeholder="Alberto, Naiara, Ivan..." required><datalist id="list-owner"></datalist></div>
+          <div class="form-field"><label>Fecha Release (DD/MM/YYYY) *</label><input type="text" id="new-fecha" list="list-fecha" placeholder="21/10/2026" required><datalist id="list-fecha"></datalist></div>
+          <div class="form-field"><label>Estado</label><select id="new-estado"><option value="ToDo">ToDo</option><option value="Implementado">Implementado</option></select></div>
+          <div class="form-field"><label>URL Jira Desarrollo</label><input type="url" id="new-jira" placeholder="https://jira.globaldevtools.bbva.com/browse/..."></div>
         </div>
-
         <div class="modal-actions">
           <button type="button" class="btn-cancel" id="btn-cancel-modal">Cancelar</button>
           <button type="submit" class="btn-save" id="btn-submit-row">💾 Guardar en Google Sheets</button>
@@ -666,24 +312,62 @@
   </div>
 
   <script>
-    // =========================================================================
-    // PEGA AQUÍ TU URL DE APPS SCRIPT (terminada en /exec)
-    // =========================================================================
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxXbNrHBztvNgV3eeyEUmYYZwqSKTwz3-L24NiNDrz5FzXqiaACLUeB5Psvm2xMf5xe/exec";
 
-    // Mostrar/ocultar el cuadrante de turnos
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+      });
+    });
+
     document.getElementById("btn-roster").addEventListener("click", () => {
       document.getElementById("roster-panel").classList.toggle("open");
     });
 
-    // =========================================================================
-    // 1. RENDERIZAR TURNO DE PSYDUCK Y TARJETAS DE SEMANAS
-    // =========================================================================
+    let fechaR1 = "21/10/2026";
+    let fechaR2 = "04/11/2026";
+
+    function actualizarEtiquetasFechasProceso() {
+      document.querySelectorAll(".lbl-r1").forEach(el => el.textContent = fechaR1);
+      document.querySelectorAll(".lbl-r2").forEach(el => el.textContent = fechaR2);
+      actualizarAsistenteTealium();
+    }
+
+    function actualizarAsistenteTealium() {
+      const rc1 = document.getElementById("wiz-rc1").value;
+      const rc2 = document.getElementById("wiz-rc2").value;
+      const q2Container = document.getElementById("wiz-q2-container");
+      const out = document.getElementById("wizard-output");
+
+      document.querySelectorAll(".scenario-card").forEach(c => c.classList.remove("highlighted"));
+
+      if (rc1 === "NO") {
+        q2Container.style.opacity = "0.4";
+        document.getElementById("card-sc-3").classList.add("highlighted");
+        out.innerHTML = `<strong>👉 Escenario 3 (No hay ninguna RC):</strong> Partimos de <strong>PROD</strong> y guardamos nuestra versión en <strong>DEV / QA</strong> subiendo un número al título, y añadiendo el cambio al comentario.`;
+      } else {
+        q2Container.style.opacity = "1";
+        if (rc2 === "SI") {
+          document.getElementById("card-sc-1").classList.add("highlighted");
+          out.innerHTML = `<strong>👉 Escenario 1 (Hay RC de ambos días: ${fechaR1} y ${fechaR2}):</strong> Deberemos partir de la del <strong>${fechaR1}</strong> (si queremos preparar la del ${fechaR1}) y guardar en el <strong>mismo sitio donde esté guardada la del ${fechaR1}</strong>. Respetando el nombre y añadiendo con un <code>+ nuestro cambio</code> en el comentario.`;
+        } else {
+          document.getElementById("card-sc-2").classList.add("highlighted");
+          out.innerHTML = `<strong>👉 Escenario 2 (No hay RC para el día ${fechaR2}):</strong> Guardaremos en <strong>DEV / QA</strong> partiendo del <strong>${fechaR1}</strong>, respetando nomenclatura y añadiendo un <code>+ con nuestro cambio</code> en la descripción.`;
+        }
+      }
+    }
+
+    document.getElementById("wiz-rc1").addEventListener("change", actualizarAsistenteTealium);
+    document.getElementById("wiz-rc2").addEventListener("change", actualizarAsistenteTealium);
+    actualizarAsistenteTealium();
+
     let datosTurnosGlobal = null;
 
     function cargarDatosPsyduck(datos) {
       datosTurnosGlobal = datos;
-
       if (datos.turnoActual) {
         document.getElementById("current-psyduck").textContent = datos.turnoActual.persona;
         const fechas = datos.turnoActual.cabecera.match(/\((.*?)\)/);
@@ -691,12 +375,10 @@
       } else {
         document.getElementById("current-psyduck").textContent = "Sin turno hoy";
       }
-
       if (datos.proximoTurno) {
         document.getElementById("next-psyduck").textContent = datos.proximoTurno.persona;
       }
 
-      // Pintar insignias de miembros con iniciales
       const teamGrid = document.getElementById("team-grid");
       teamGrid.innerHTML = `<strong style="font-size:0.78rem; color:var(--muted); margin-right:0.25rem;">Equipo:</strong>`;
       datos.miembros.forEach(nombre => {
@@ -707,7 +389,6 @@
         badge.innerHTML = `<span class="avatar-circle">${iniciales}</span> ${nombre} ${esActivo ? "🦆" : ""}`;
         teamGrid.appendChild(badge);
       });
-
       pintarTarjetasSemanas();
     }
 
@@ -716,56 +397,34 @@
       const verTodas = document.getElementById("chk-all-weeks").checked;
       const weeksGrid = document.getElementById("weeks-grid");
       weeksGrid.innerHTML = "";
-
       const turnos = datosTurnosGlobal.turnos || [];
       const idxActual = datosTurnosGlobal.indiceActual;
-
-      // Por defecto muestra desde 1 semana antes de la actual hasta 6 semanas después (para que se vea limpio)
       const inicio = (!verTodas && idxActual !== -1) ? Math.max(0, idxActual - 1) : 0;
       const fin = (!verTodas && idxActual !== -1) ? Math.min(turnos.length, idxActual + 7) : turnos.length;
 
       turnos.slice(inicio, fin).forEach((t, i) => {
         const realIdx = inicio + i;
         const card = document.createElement("div");
-        let estadoClase = "";
-        if (t.esActual) estadoClase = "current";
-        else if (idxActual !== -1 && realIdx < idxActual) estadoClase = "past";
-
+        let estadoClase = t.esActual ? "current" : (idxActual !== -1 && realIdx < idxActual ? "past" : "");
         card.className = `week-card ${estadoClase}`;
-        card.innerHTML = `
-          <div class="week-title">${t.cabecera}</div>
-          <div class="week-person">
-            <span>${t.persona || "-"}</span>
-            <span>${t.esActual ? "🦆 Activo" : ""}</span>
-          </div>
-        `;
+        card.innerHTML = `<div class="week-title">${t.cabecera}</div><div class="week-person"><span>${t.persona || "-"}</span><span>${t.esActual ? "🦆 Activo" : ""}</span></div>`;
         weeksGrid.appendChild(card);
       });
     }
 
     document.getElementById("chk-all-weeks").addEventListener("change", pintarTarjetasSemanas);
 
-    // =========================================================================
-    // 2. RENDERIZAR Y FILTRAR TABLA DE CAMBIOS DE RELEASE
-    // =========================================================================
     let todosLosCambios = [];
     let proximaFechaDetectada = "";
 
     function parseFechaDMY(str) {
       const m = (str || "").match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-      if (!m) return null;
-      return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+      return m ? new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1])) : null;
     }
 
     function cargarReleases(datos) {
       todosLosCambios = datos || [];
-
-      const fechasMap = new Map();
-      const paisesSet = new Set();
-      const perfilesSet = new Set();
-      const cambiosSet = new Set();
-      const ownersSet = new Set();
-      const estadosSet = new Set();
+      const fechasMap = new Map(), paisesSet = new Set(), perfilesSet = new Set(), cambiosSet = new Set(), ownersSet = new Set(), estadosSet = new Set();
 
       todosLosCambios.forEach(item => {
         if (item.fechaRelease) fechasMap.set(item.fechaRelease, parseFechaDMY(item.fechaRelease));
@@ -776,30 +435,18 @@
         if (item.estado) estadosSet.add(item.estado);
       });
 
-      const hoy = new Date();
-      hoy.setHours(0, 0, 0, 0);
+      const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+      const fechasOrdenadas = Array.from(fechasMap.keys()).sort((a, b) => (fechasMap.get(b) || 0) - (fechasMap.get(a) || 0));
+      const futurasAsc = Array.from(fechasMap.entries()).filter(([, d]) => d && d >= hoy).sort((a, b) => a[1] - b[1]).map(([str]) => str);
 
-      const fechasOrdenadas = Array.from(fechasMap.keys()).sort((a, b) => {
-        const da = fechasMap.get(a) || new Date(0);
-        const db = fechasMap.get(b) || new Date(0);
-        return db - da;
-      });
-
-      let proximaFecha = "ALL";
-      let menorDiff = Infinity;
-      fechasMap.forEach((dateObj, strFecha) => {
-        if (dateObj && dateObj >= hoy) {
-          const diff = dateObj - hoy;
-          if (diff < menorDiff) {
-            menorDiff = diff;
-            proximaFecha = strFecha;
-          }
-        }
-      });
-      if (proximaFecha === "ALL" && fechasOrdenadas.length > 0) {
-        proximaFecha = fechasOrdenadas[0];
-      }
+      let proximaFecha = futurasAsc.length > 0 ? futurasAsc[0] : (fechasOrdenadas[0] || "ALL");
       proximaFechaDetectada = proximaFecha !== "ALL" ? proximaFecha : "";
+
+      if (futurasAsc.length >= 2) {
+        fechaR1 = futurasAsc[0];
+        fechaR2 = futurasAsc[1];
+        actualizarEtiquetasFechasProceso();
+      }
 
       const selFecha = document.getElementById("filter-fecha");
       const valorPrevio = selFecha.value;
@@ -817,14 +464,11 @@
       rellenarSelect("filter-pais", Array.from(paisesSet).sort(), "Todos los países");
       rellenarSelect("filter-owner", Array.from(ownersSet).sort(), "Todos los Owners");
       rellenarSelect("filter-estado", Array.from(estadosSet).sort(), "Todos los estados");
-
-      // Autocompletado inteligente en el formulario de añadir fila
       rellenarDatalist("list-pais", paisesSet);
       rellenarDatalist("list-perfil", perfilesSet);
       rellenarDatalist("list-cambio", cambiosSet);
       rellenarDatalist("list-owner", ownersSet);
       rellenarDatalist("list-fecha", fechasOrdenadas);
-
       renderizarTablaReleases();
     }
 
@@ -834,8 +478,7 @@
       sel.innerHTML = `<option value="ALL">${textoDefault}</option>`;
       valores.forEach(v => {
         const opt = document.createElement("option");
-        opt.value = v;
-        opt.textContent = v;
+        opt.value = v; opt.textContent = v;
         if (v === valActual) opt.selected = true;
         sel.appendChild(opt);
       });
@@ -846,8 +489,7 @@
       dl.innerHTML = "";
       valores.forEach(v => {
         const opt = document.createElement("option");
-        opt.value = v;
-        dl.appendChild(opt);
+        opt.value = v; dl.appendChild(opt);
       });
     }
 
@@ -866,25 +508,17 @@
         if (fPais !== "ALL" && item.pais !== fPais) return false;
         if (fOwner !== "ALL" && item.owner !== fOwner) return false;
         if (fEstado !== "ALL" && item.estado !== fEstado) return false;
-        if (fSearch) {
-          const texto = `${item.operativa} ${item.urls} ${item.queSeCambia} ${item.perfil} ${item.owner} ${item.jira}`.toLowerCase();
-          if (!texto.includes(fSearch)) return false;
-        }
+        if (fSearch && !`${item.operativa} ${item.urls} ${item.queSeCambia} ${item.perfil} ${item.owner} ${item.jira}`.toLowerCase().includes(fSearch)) return false;
         return true;
       });
 
-      const numTodo = filtrados.filter(i => i.estado.toLowerCase().includes("todo")).length;
-      const numDone = filtrados.filter(i => i.estado.toLowerCase().includes("implementado")).length;
-
       document.getElementById("stat-total").textContent = `Total: ${filtrados.length}`;
-      document.getElementById("stat-todo").textContent = `ToDo: ${numTodo}`;
-      document.getElementById("stat-done").textContent = `Implementados: ${numDone}`;
-      document.getElementById("release-subtitle").textContent =
-        fFecha === "ALL" ? "Mostrando histórico completo" : `Cambios para la release del ${fFecha}`;
+      document.getElementById("stat-todo").textContent = `ToDo: ${filtrados.filter(i => i.estado.toLowerCase().includes("todo")).length}`;
+      document.getElementById("stat-done").textContent = `Implementados: ${filtrados.filter(i => i.estado.toLowerCase().includes("implementado")).length}`;
+      document.getElementById("release-subtitle").textContent = fFecha === "ALL" ? "Mostrando histórico completo" : `Cambios para la release del ${fFecha}`;
 
       const tbody = document.getElementById("releases-tbody");
       tbody.innerHTML = "";
-
       if (filtrados.length === 0) {
         tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:1.5rem; color:var(--muted);">No hay cambios con estos filtros.</td></tr>`;
         return;
@@ -894,23 +528,14 @@
         const tr = document.createElement("tr");
         const pLower = item.pais.toLowerCase();
         const clasePais = ["es", "it", "de"].includes(pLower) ? `pais-${pLower}` : "pais-default";
-
-        let clasePlat = "plat-quantum";
-        if (item.plataforma.toLowerCase() === "tealium") clasePlat = "plat-tealium";
-        else if (item.plataforma.toLowerCase().includes("y")) clasePlat = "plat-ambos";
-
-        let claseCambio = "cambio-default";
+        let clasePlat = item.plataforma.toLowerCase() === "tealium" ? "plat-tealium" : (item.plataforma.toLowerCase().includes("y") ? "plat-ambos" : "plat-quantum");
         const cLower = item.queSeCambia.toLowerCase();
-        if (cLower.includes("core")) claseCambio = "cambio-core";
-        else if (cLower.includes("ofus")) claseCambio = "cambio-ofus";
-        else if (cLower.includes("conf")) claseCambio = "cambio-conf";
-
+        let claseCambio = cLower.includes("core") ? "cambio-core" : (cLower.includes("ofus") ? "cambio-ofus" : (cLower.includes("conf") ? "cambio-conf" : "cambio-default"));
         const claseEstado = item.estado.toLowerCase().includes("implementado") ? "estado-ok" : "estado-todo";
 
         let htmlJira = "-";
         if (item.jira && item.jira.startsWith("http")) {
-          const partes = item.jira.replace(/\/$/, "").split("/");
-          const ticketKey = partes[partes.length - 1] || "Jira";
+          const ticketKey = item.jira.replace(/\/$/, "").split("/").pop() || "Jira";
           htmlJira = `<a href="${item.jira}" target="_blank" class="btn-jira">🔗 ${ticketKey}</a>`;
         }
 
@@ -934,12 +559,8 @@
       document.getElementById(id).addEventListener("input", renderizarTablaReleases);
     });
 
-    // =========================================================================
-    // 3. LÓGICA DEL MODAL PARA GUARDAR NUEVAS FILAS EN GOOGLE SHEETS
-    // =========================================================================
     const modal = document.getElementById("modal-add");
     document.getElementById("btn-open-modal").addEventListener("click", () => {
-      // Pre-rellena con la fecha de la próxima release seleccionada
       const fechaSel = document.getElementById("filter-fecha").value;
       document.getElementById("new-fecha").value = (fechaSel !== "ALL") ? fechaSel : proximaFechaDetectada;
       modal.classList.add("open");
@@ -952,9 +573,7 @@
     document.getElementById("form-new-row").addEventListener("submit", function(e) {
       e.preventDefault();
       const btn = document.getElementById("btn-submit-row");
-      btn.disabled = true;
-      btn.textContent = "Guardando en Excel...";
-
+      btn.disabled = true; btn.textContent = "Guardando en Excel...";
       const nuevaFila = {
         pais: document.getElementById("new-pais").value.trim(),
         perfil: document.getElementById("new-perfil").value.trim(),
@@ -967,8 +586,6 @@
         estado: document.getElementById("new-estado").value,
         jira: document.getElementById("new-jira").value.trim()
       };
-
-      // Envía la fila a Apps Script mediante JSONP (sortea CORS y usa tu sesión corporativa)
       const s = document.createElement("script");
       s.src = `${APPS_SCRIPT_URL}?action=addRow&data=${encodeURIComponent(JSON.stringify(nuevaFila))}&t=${Date.now()}`;
       document.body.appendChild(s);
@@ -976,13 +593,10 @@
 
     function onFilaGuardada(res) {
       const btn = document.getElementById("btn-submit-row");
-      btn.disabled = false;
-      btn.textContent = "💾 Guardar en Google Sheets";
-
+      btn.disabled = false; btn.textContent = "💾 Guardar en Google Sheets";
       if (res && res.ok) {
         cerrarModal();
         document.getElementById("form-new-row").reset();
-        // Recarga los datos desde el Excel para mostrar la fila recién añadida
         cargarScriptInicial();
       } else {
         alert("No se pudo guardar la fila: " + (res ? res.error : "Error desconocido"));
@@ -995,9 +609,7 @@
       document.body.appendChild(s);
     }
 
-    // Carga inicial al abrir la página
     cargarScriptInicial();
   </script>
-
 </body>
 </html>
