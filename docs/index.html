@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Psyduck | Gestión de Releases - Quantum Metric</title>
+  <title>Portal Psyduck | Quantum Metric</title>
   <style>
     :root {
       --yellow: #facc15;
-      --dark: #1e293b;
+      --yellow-soft: #fef9c3;
+      --purple-sheet: #d9d2e9;
+      --dark: #0f172a;
       --bg: #f8fafc;
       --card: #ffffff;
       --border: #e2e8f0;
-      --accent: #0284c7;
+      --muted: #64748b;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -19,173 +21,229 @@
       color: var(--dark);
       margin: 0;
       padding: 2rem 1rem;
-      line-height: 1.5;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .container { max-width: 1000px; margin: 0 auto; }
+
     header {
       background: var(--dark);
       color: white;
       padding: 1.5rem 2rem;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
       border-bottom: 5px solid var(--yellow);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     header h1 { margin: 0; font-size: 1.5rem; }
-    .badge-psyduck {
-      background: var(--yellow);
-      color: var(--dark);
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      font-weight: 700;
+    .btn-sheet {
+      background: #107c41;
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
       font-size: 0.9rem;
     }
-    .grid {
+
+    /* Banner del turno actual */
+    .hero-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.25rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
-    .card {
+    .hero-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+    }
+    .hero-card.active {
+      background: var(--yellow-soft);
+      border-color: var(--yellow);
+      box-shadow: 0 4px 16px rgba(250, 204, 21, 0.25);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: var(--dark);
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+    .badge.secondary {
+      background: var(--border);
+      color: var(--dark);
+    }
+    .big-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0.25rem 0;
+    }
+    .period-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Tarjetas del equipo */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .member-pill {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 700;
+    }
+    .member-pill.on-duty {
+      border-color: var(--yellow);
+      background: var(--yellow-soft);
+    }
+
+    /* Línea temporal horizontal como el Excel */
+    .timeline-wrapper {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      margin-bottom: 1.25rem;
+      border-radius: 12px;
+      padding: 1.25rem;
+      overflow-x: auto;
     }
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.15rem;
-      border-bottom: 2px solid var(--bg);
-      padding-bottom: 0.5rem;
-    }
-    .checklist label {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 0;
-      cursor: pointer;
-    }
-    .checklist input:checked + span {
-      text-decoration: line-through;
-      color: #64748b;
-    }
-    table {
-      width: 100%;
+    table.excel-mirror {
       border-collapse: collapse;
-      font-size: 0.95rem;
+      width: 100%;
+      min-width: 650px;
+      font-size: 0.88rem;
     }
-    th, td {
-      text-align: left;
-      padding: 0.75rem;
-      border-bottom: 1px solid var(--border);
+    .excel-mirror th {
+      background: var(--purple-sheet);
+      color: var(--dark);
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      text-align: center;
+      white-space: nowrap;
     }
-    th { background-color: var(--bg); }
-    .status-ok {
-      background: #dcfce7;
-      color: #166534;
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
+    .excel-mirror td {
+      padding: 0.75rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      text-align: center;
       font-weight: 600;
-      font-size: 0.8rem;
+      white-space: nowrap;
     }
-    .links a {
-      display: inline-block;
-      margin-right: 0.75rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
+    .excel-mirror .col-actual {
+      background: var(--yellow-soft) !important;
+      border: 2px solid #eab308;
     }
-    .links a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- CABECERA: EDITAR EL NOMBRE DE QUIEN LLEVA EL ROL -->
     <header>
       <div>
         <h1>🦆 Portal Psyduck — Quantum Metric</h1>
-        <small>Centro de control y seguimiento de Releases del equipo</small>
+        <small id="status-sync">Conectando con Google Sheets...</small>
       </div>
-      <div class="badge-psyduck">
-        Psyduck actual: [Tu Nombre Aquí]
-      </div>
+      <a href="PEGA_AQUI_EL_LINK_DE_TU_GOOGLE_SHEETS" target="_blank" class="btn-sheet">
+        📊 Abrir Google Sheets
+      </a>
     </header>
 
-    <div class="grid">
-      <!-- PRÓXIMA RELEASE -->
-      <div class="card">
-        <h2>🚀 Próxima Release</h2>
-        <p><strong>Versión:</strong> v1.4.0</p>
-        <p><strong>Fecha prevista:</strong> Viernes, 23 Oct</p>
-        <p><strong>Estado:</strong> En validación pre-producción</p>
+    <!-- 1. Resumen de quién está de guardia hoy y quién va después -->
+    <div class="hero-grid">
+      <div class="hero-card active">
+        <span class="badge">🦆 Psyduck Esta Semana</span>
+        <p class="big-name" id="current-psyduck">Cargando...</p>
+        <p class="period-text" id="current-period">Buscando fecha actual en el Excel...</p>
       </div>
-
-      <!-- ENLACES RÁPIDOS -->
-      <div class="card">
-        <h2>🔗 Accesos Rápidos</h2>
-        <div class="links">
-          <a href="#" target="_blank">📊 Consola Quantum Metric</a><br>
-          <a href="#" target="_blank">💻 Repositorio en GitHub</a><br>
-          <a href="#" target="_blank">📋 Tablero de Tareas / Jira</a><br>
-          <a href="#" target="_blank">📖 Runbook de Despliegue</a>
-        </div>
+      <div class="hero-card">
+        <span class="badge secondary">⏭️ Siguiente Turno (Backup)</span>
+        <p class="big-name" id="next-psyduck">-</p>
+        <p class="period-text" id="next-period">-</p>
       </div>
     </div>
 
-    <!-- CHECKLIST OPERATIVO DEL ROL PSYDUCK -->
-    <div class="card">
-      <h2>✅ Checklist de Release para el Psyduck de turno</h2>
-      <div class="checklist">
-        <label><input type="checkbox"> <span>Revisar Pull Requests pendientes del repositorio de Quantum Metric.</span></label>
-        <label><input type="checkbox"> <span>Validar configuración de eventos, sesiones y alertas en entorno de pruebas.</span></label>
-        <label><input type="checkbox"> <span>Ejecutar la release y etiquetar la versión en GitHub Enterprise.</span></label>
-        <label><input type="checkbox"> <span>Monitorizar métricas de errores en Quantum Metric durante los primeros 30 min.</span></label>
-        <label><input type="checkbox"> <span>Actualizar la tabla de historial abajo y comunicar la subida al equipo.</span></label>
-      </div>
-    </div>
+    <!-- 2. Censo de personas del equipo detectadas en el Excel -->
+    <h2>👥 Equipo Psyduck</h2>
+    <div class="team-grid" id="team-grid"></div>
 
-    <!-- HISTORIAL DE RELEASES -->
-    <div class="card">
-      <h2>📜 Historial de Releases Recientes</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Versión</th>
-            <th>Fecha</th>
-            <th>Psyduck Responsable</th>
-            <th>Cambios Principales</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- COPIAR Y PEGAR UNA FILA <tr>...</tr> PARA CADA NUEVA RELEASE -->
-          <tr>
-            <td><strong>v1.3.2</strong></td>
-            <td>15 Oct 2026</td>
-            <td>[Nombre]</td>
-            <td>Ajuste de selectores y captura de errores en checkout</td>
-            <td><span class="status-ok">Completada</span></td>
-          </tr>
-          <tr>
-            <td><strong>v1.3.1</strong></td>
-            <td>01 Oct 2026</td>
-            <td>[Nombre]</td>
-            <td>Actualización del script base de Quantum Metric</td>
-            <td><span class="status-ok">Completada</span></td>
-          </tr>
-        </tbody>
+    <!-- 3. Vista de cuadrante de semanas (igual que tu Excel pero resaltando la semana actual) -->
+    <h2>📅 Cuadrante de Semanas (Sincronizado)</h2>
+    <div class="timeline-wrapper">
+      <table class="excel-mirror" id="schedule-table">
+        <thead><tr id="row-dates"><th>Semana</th></tr></thead>
+        <tbody><tr id="row-names"><td style="background:#d9d2e9;">Psyduck</td></tr></tbody>
       </table>
     </div>
   </div>
+
+  <script>
+    // Esta función recibe automáticamente los datos desde tu Google Apps Script
+    function cargarDatosPsyduck(datos) {
+      document.getElementById("status-sync").textContent = 
+        "Sincronizado en tiempo real con Google Sheets";
+
+      // 1. Pintar Psyduck actual y siguiente
+      if (datos.turnoActual) {
+        document.getElementById("current-psyduck").textContent = datos.turnoActual.persona;
+        document.getElementById("current-period").textContent = datos.turnoActual.cabecera;
+      } else {
+        document.getElementById("current-psyduck").textContent = "Sin turno activo hoy";
+        document.getElementById("current-period").textContent = 
+          "Añade la columna con las fechas de la semana actual en el Google Sheets.";
+      }
+
+      if (datos.proximoTurno) {
+        document.getElementById("next-psyduck").textContent = datos.proximoTurno.persona;
+        document.getElementById("next-period").textContent = datos.proximoTurno.cabecera;
+      }
+
+      // 2. Pintar las tarjetas de los miembros del equipo
+      const teamGrid = document.getElementById("team-grid");
+      datos.miembros.forEach(nombre => {
+        const esActivo = datos.turnoActual && datos.turnoActual.persona === nombre;
+        const div = document.createElement("div");
+        div.className = `member-pill ${esActivo ? "on-duty" : ""}`;
+        div.innerHTML = `${esActivo ? "🦆 " : ""}${nombre}`;
+        teamGrid.appendChild(div);
+      });
+
+      // 3. Pintar la tabla horizontal y hacer scroll automático hasta la semana actual
+      const trDates = document.getElementById("row-dates");
+      const trNames = document.getElementById("row-names");
+
+      datos.turnos.forEach((t, idx) => {
+        const th = document.createElement("th");
+        th.textContent = t.cabecera;
+        if (t.esActual) th.className = "col-actual";
+        trDates.appendChild(th);
+
+        const td = document.createElement("td");
+        td.textContent = t.persona;
+        if (t.esActual) {
+          td.className = "col-actual";
+          setTimeout(() => th.scrollIntoView({ behavior: "smooth", inline: "center" }), 200);
+        }
+        trNames.appendChild(td);
+      });
+    }
+  </script>
+
+  <!-- ==================================================================== -->
+  <!-- PEGA AQUÍ DEBAJO LA URL DE TU APPS SCRIPT (la que termina en /exec)  -->
+  <!-- ==================================================================== -->
+  <script src="https://script.google.com/macros/s/AKfycbxXbNrHBztvNgV3eeyEUmYYZwqSKTwz3-L24NiNDrz5FzXqiaACLUeB5Psvm2xMf5xe/exec"></script>
 
 </body>
 </html>
